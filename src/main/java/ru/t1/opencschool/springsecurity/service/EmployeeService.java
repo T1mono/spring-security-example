@@ -1,17 +1,14 @@
 package ru.t1.opencschool.springsecurity.service;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import ru.t1.opencschool.springsecurity.repository.EmployeeRepo;
+import org.springframework.transaction.annotation.Transactional;
+import ru.t1.opencschool.springsecurity.dto.EmployeeRequestDto;
+import ru.t1.opencschool.springsecurity.model.Employee;
 
-@Service
-@RequiredArgsConstructor
-public class EmployeeService {
+import java.util.List;
 
-    private final EmployeeRepo employeeRepo;
+public interface EmployeeService {
+    @Transactional
+    Employee createEmployee(EmployeeRequestDto employeeRequestDto);
 
-
-    public void createEmployee() {
-
-    }
+    List<EmployeeRequestDto> getAllEmployees();
 }
