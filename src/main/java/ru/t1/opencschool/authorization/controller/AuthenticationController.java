@@ -13,6 +13,9 @@ import ru.t1.opencschool.authorization.dto.UserSignInRequestDto;
 import ru.t1.opencschool.authorization.dto.UserSignUpRequestDto;
 import ru.t1.opencschool.authorization.service.AuthenticationService;
 
+/**
+ * Контроллер регистрации и авторизации пользователя.
+ */
 @RestController
 @RequestMapping("api/v1/auth")
 @RequiredArgsConstructor

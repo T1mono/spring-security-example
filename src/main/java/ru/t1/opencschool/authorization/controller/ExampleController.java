@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.t1.opencschool.authorization.service.UserService;
 
+/**
+ * Контроллер для демонстрации доступов.
+ */
 @RestController
 @RequestMapping("/example")
 @RequiredArgsConstructor
@@ -16,7 +19,6 @@ import ru.t1.opencschool.authorization.service.UserService;
 public class ExampleController {
 
     private final UserService service;
-
 
     @GetMapping
     @Operation(summary = "Доступен только авторизованным пользователям")

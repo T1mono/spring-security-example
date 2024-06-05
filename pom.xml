@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ru.t1.opencschool</groupId>
-    <artifactId>spring-security</artifactId>
+    <artifactId>spring-security-example</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-security</name>
     <description>spring-security</description>
