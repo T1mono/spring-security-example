@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import ru.t1.opencschool.springsecurity.dto.JwtAuthenticationResponse;
 import ru.t1.opencschool.springsecurity.dto.SignInRequest;
 import ru.t1.opencschool.springsecurity.dto.SignUpRequest;
+import ru.t1.opencschool.springsecurity.exceptions.InternalServerErrorException;
 import ru.t1.opencschool.springsecurity.model.User;
 import ru.t1.opencschool.springsecurity.roles.Role;
 
@@ -25,7 +26,7 @@ public class AuthenticationService {
      * @param request данные пользователя
      * @return токен
      */
-    public JwtAuthenticationResponse signUp(SignUpRequest request) {
+    public JwtAuthenticationResponse signUp(SignUpRequest request) throws Exception{
 
         var user = User.builder()
                 .username(request.getUsername())
@@ -34,7 +35,14 @@ public class AuthenticationService {
                 .role(Role.ROLE_USER)
                 .build();
 
-        userService.create(user);
+        try {
+            // Сохранение пользователя в базе данных
+            userService.create(user);
+        } catch (Exception e) {
+            // Обработка исключения, если возникла ошибка при сохранении пользователя
+            throw new InternalServerErrorException("Failed to create user", e);
+        }
+;
 
         var jwt = jwtService.generateToken(user);
         return new JwtAuthenticationResponse(jwt);
