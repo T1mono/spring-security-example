@@ -1,4 +1,4 @@
-package ru.t1.opencschool.springsecurity.exceptions;
+package ru.t1.opencschool.authorization.exceptions;
 
 public class InternalServerErrorException extends RuntimeException{
     public InternalServerErrorException(String message) {

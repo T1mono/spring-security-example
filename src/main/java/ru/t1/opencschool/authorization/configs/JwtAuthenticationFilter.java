@@ -1,4 +1,4 @@
-package ru.t1.opencschool.springsecurity.filter;
+package ru.t1.opencschool.authorization.configs;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -14,8 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import ru.t1.opencschool.springsecurity.service.JwtService;
-import ru.t1.opencschool.springsecurity.service.UserService;
+import ru.t1.opencschool.authorization.service.JwtService;
+import ru.t1.opencschool.authorization.service.UserService;
 
 import java.io.IOException;
 

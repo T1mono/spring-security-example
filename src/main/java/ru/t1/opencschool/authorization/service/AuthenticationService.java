@@ -1,17 +1,20 @@
-package ru.t1.opencschool.springsecurity.service;
+package ru.t1.opencschool.authorization.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.t1.opencschool.springsecurity.dto.JwtAuthenticationResponse;
-import ru.t1.opencschool.springsecurity.dto.SignInRequest;
-import ru.t1.opencschool.springsecurity.dto.SignUpRequest;
-import ru.t1.opencschool.springsecurity.exceptions.InternalServerErrorException;
-import ru.t1.opencschool.springsecurity.model.User;
-import ru.t1.opencschool.springsecurity.roles.Role;
+import ru.t1.opencschool.authorization.dto.JwtAuthenticationResponseDto;
+import ru.t1.opencschool.authorization.dto.UserSignInRequestDto;
+import ru.t1.opencschool.authorization.dto.UserSignUpRequestDto;
+import ru.t1.opencschool.authorization.exceptions.InternalServerErrorException;
+import ru.t1.opencschool.authorization.users.UserAccount;
+import ru.t1.opencschool.authorization.roles.Role;
 
+/**
+ * Сервис авторизации.
+ */
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -26,9 +29,9 @@ public class AuthenticationService {
      * @param request данные пользователя
      * @return токен
      */
-    public JwtAuthenticationResponse signUp(SignUpRequest request) throws Exception{
+    public JwtAuthenticationResponseDto signUp(UserSignUpRequestDto request) throws Exception{
 
-        var user = User.builder()
+        var user = UserAccount.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
@@ -45,7 +48,7 @@ public class AuthenticationService {
 ;
 
         var jwt = jwtService.generateToken(user);
-        return new JwtAuthenticationResponse(jwt);
+        return new JwtAuthenticationResponseDto(jwt);
     }
 
     /**
@@ -54,7 +57,7 @@ public class AuthenticationService {
      * @param request данные пользователя
      * @return токен
      */
-    public JwtAuthenticationResponse signIn(SignInRequest request) {
+    public JwtAuthenticationResponseDto signIn(UserSignInRequestDto request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 request.getUsername(),
                 request.getPassword()
@@ -65,6 +68,6 @@ public class AuthenticationService {
                 .loadUserByUsername(request.getUsername());
 
         var jwt = jwtService.generateToken(user);
-        return new JwtAuthenticationResponse(jwt);
+        return new JwtAuthenticationResponseDto(jwt);
     }
 }

@@ -1,4 +1,4 @@
-package ru.t1.opencschool.springsecurity;
+package ru.t1.opencschool.authorization;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

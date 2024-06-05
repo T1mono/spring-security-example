@@ -1,4 +1,4 @@
-package ru.t1.opencschool.springsecurity.configuration;
+package ru.t1.opencschool.authorization.configs;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
-import ru.t1.opencschool.springsecurity.filter.JwtAuthenticationFilter;
-import ru.t1.opencschool.springsecurity.service.UserService;
+import ru.t1.opencschool.authorization.service.UserService;
 
 import java.util.List;
 
@@ -27,7 +26,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableWebSecurity
 @EnableMethodSecurity
 @RequiredArgsConstructor
-public class SecurityConfig {
+public class SecurityConfiguration {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserService userService;

@@ -1,4 +1,4 @@
-package ru.t1.opencschool.springsecurity.model;
+package ru.t1.opencschool.authorization.users;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,10 +17,13 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.t1.opencschool.springsecurity.roles.Role;
+import ru.t1.opencschool.authorization.roles.Role;
 
 import java.util.Collection;
 
+/**
+ * Пользовательский аккаунт.
+ */
 @Entity
 @Builder
 @Table(schema = "corporation", name = "users")
@@ -29,7 +32,7 @@ import java.util.Collection;
 @Getter
 @Setter
 @ToString
-public class User implements UserDetails {
+public class UserAccount implements UserDetails {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")

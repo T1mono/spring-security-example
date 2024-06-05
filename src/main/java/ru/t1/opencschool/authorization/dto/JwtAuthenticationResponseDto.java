@@ -1,4 +1,4 @@
-package ru.t1.opencschool.springsecurity.dto;
+package ru.t1.opencschool.authorization.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Schema(description = "Ответ c токеном доступа")
-public class JwtAuthenticationResponse {
+public class JwtAuthenticationResponseDto {
     @Schema(description = "Токен доступа", example = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyMjUwNj...")
     private String token;
 }
