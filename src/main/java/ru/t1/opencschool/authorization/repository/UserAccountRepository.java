@@ -6,6 +6,9 @@ import ru.t1.opencschool.authorization.users.UserAccount;
 
 import java.util.Optional;
 
+/**
+ * JPA репозиторий для класса {@link UserAccount}.
+ */
 @Repository
 public interface UserAccountRepository extends JpaRepository<UserAccount, Long> {
     Optional<UserAccount> findByUsername(String username);

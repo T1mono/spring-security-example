@@ -19,6 +19,9 @@ import ru.t1.opencschool.authorization.service.UserService;
 
 import java.io.IOException;
 
+/**
+ * Кастомный фильтр.
+ */
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
