@@ -33,21 +33,37 @@ import java.util.Collection;
 @Setter
 @ToString
 public class UserAccount implements UserDetails {
+
+    /**
+     * ID.
+     */
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
     @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
     private Long id;
 
+    /**
+     * Имя пользователя.
+     */
     @Column(name = "username", unique = true, nullable = false)
     private String username;
 
+    /**
+     * Пароль пользователя.
+     */
     @Column(name = "password", nullable = false)
     private String password;
 
+    /**
+     * Email пользователя.
+     */
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
+    /**
+     * Роль пользователя.
+     */
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private Role role;
