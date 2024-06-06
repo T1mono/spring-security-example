@@ -26,6 +26,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * Тесты на авторизацию пользователя.
+ */
 @ExtendWith(MockitoExtension.class)
 class AuthenticationServiceTest {
 
@@ -69,7 +72,7 @@ class AuthenticationServiceTest {
     void signUp_shouldThrowException_whenUserCreationFails() {
         // Arrange
         UserSignUpRequestDto request = new UserSignUpRequestDto("testUser", "test@example.com", "testPassword");
-        doThrow(new Exception("Failed to create user")).when(userService).create(any(UserAccount.class));
+        doThrow(new InternalServerErrorException("Failed to create user")).when(userService).create(any(UserAccount.class));
 
         // Act & Assert
         assertThrows(InternalServerErrorException.class, () -> authenticationService.signUp(request));
