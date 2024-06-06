@@ -1,24 +1,49 @@
-# Getting Started
+# spring-security-example
 
-### Reference Documentation
+## Описание
 
-For further reference, please consider the following sections:
+Веб-приложение с использованием Spring Security и JWT для аутентификации и авторизации пользователей.
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.3.0/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.3.0/maven-plugin/reference/html/#build-image)
-* [Spring Security](https://docs.spring.io/spring-boot/docs/3.3.0/reference/htmlsingle/index.html#web.security)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/3.3.0/reference/htmlsingle/index.html#web)
 
-### Guides
+## Сборка backend части
 
-The following guides illustrate how to use some features concretely:
+```cmd
+cd spring-security && mvn clean package
+```
+Linux (bash):
+```bash
+(cd spring-security && mvn clean package)
+```
 
-* [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
-* [Securing a Web Application](https://spring.io/guides/gs/securing-web/)
-* [Spring Boot and OAuth2](https://spring.io/guides/tutorials/spring-boot-oauth2/)
-* [Authenticating a User with LDAP](https://spring.io/guides/gs/authenticating-ldap/)
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
+## Запуск
 
+### Простой запуск:
+```bash
+java -jar target/spring-security-0.0.1-SNAPSHOT.jar
+```
+
+## Использование
+
+URL с swagger документацией: http://localhost:8080/swagger-ui/index.html
+
+## Запуск браузера с отключённым CORS
+Создать ярлык на рабочем столе и в поле объект прописать
+- "C:\Program Files\Google\Chrome\Application\chrome.exe" --user-data-dir="C://chrome-dev-disabled-security" --disable-web-security --disable-site-isolation-trials
+
+
+## Скрпиты для создания таблиц в БД (PostgreSQL)
+
+```
+CREATE TABLE IF NOT EXISTS corporation.users
+(
+    id       BIGSERIAL PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255)        NOT NULL,
+    email    VARCHAR(255) UNIQUE NOT NULL,
+    role     VARCHAR(255)        NOT NULL
+);
+```
+
+## Проверка, что хранится внутри токена
+
+https://jwt.io/
