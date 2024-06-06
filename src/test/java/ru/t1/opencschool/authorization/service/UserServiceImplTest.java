@@ -1,13 +1,10 @@
 package ru.t1.opencschool.authorization.service;
 
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import ru.t1.opencschool.authorization.repository.UserAccountRepository;
 import ru.t1.opencschool.authorization.roles.Role;
@@ -15,10 +12,10 @@ import ru.t1.opencschool.authorization.users.UserAccount;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -117,31 +114,4 @@ class UserServiceImplTest {
         verify(userAccountRepository).findByUsername(username);
         assertEquals(userAccount, currentUser);
     }
-
-//    @Test
-//    void getAdmin_shouldGrantAdminRoleToCurrentUser()  {
-//        // Arrange
-//        String username = "testUser";
-//        UserAccount userAccount = new UserAccount(1L,username, "test@example.com", "testPassword", Role.ROLE_USER);
-//        when(userAccountRepository.findByUsername(username)).thenReturn(Optional.of(userAccount));
-//
-//        // Установка аутентификации в контексте безопасности
-//        SecurityContext securityContext = mock(SecurityContext.class);
-//        Authentication authentication = mock(Authentication.class);
-//        when(authentication.getName()).thenReturn(username);
-//        when(securityContext.getAuthentication()).thenReturn(authentication);
-//        SecurityContextHolder.setContext(securityContext);
-//
-//        // Act
-//        userService.getAdmin();
-//
-//        // Assert
-//        verify(userAccountRepository).findByUsername(username);
-//        verify(userAccountRepository).save(userAccount);
-//        assertEquals(Role.ROLE_ADMIN, userAccount.getRole());
-//
-//        // Очистка контекста безопасности после теста
-//        SecurityContextHolder.clearContext();
-//    }
-
 }

@@ -44,6 +44,6 @@ CREATE TABLE IF NOT EXISTS corporation.users
 );
 ```
 
-## Проверка, что хранится внутри токена
+## Проверка токена
 
-https://jwt.io/
+https://jwt.io/ 
